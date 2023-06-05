@@ -19,7 +19,7 @@ This prompts the user with multiple questions which is then used to create and f
 
 ### Executing program
 
-[Video]()
+[Video](https://drive.google.com/file/d/1DFkd132na66nYSKCX6RoyFRDy_gR7cx3/view)
 
 ## Author(s)
 
@@ -42,5 +42,5 @@ This project is licensed under the MIT License - see the LICENSE.md file for det
 
 ## Deployed Program
 
-![Picture]()
+
 

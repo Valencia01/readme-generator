@@ -2,7 +2,7 @@
       
   ## Description
     
-  small description
+  a small description
     
   ## Table of Contents
     
@@ -20,11 +20,11 @@
     
   ## Installation
     
-  Details
+  some details
     
   ## Usage
     
-  more details
+  some mre details
     
   ## Credits
     
