@@ -2,52 +2,66 @@ const inquirer = require('inquirer');
 
 const { writeFile } = require('fs').promises;
 
+const generate = require('./utils/generateMarkdown');
+
 // TODO: Create an array of questions for user input
-const questions = [];
+const questions = [
+    'What is the title to your project?', 
+    'Enter a small description of what your project is about.',
+    'Check every compatible system.',
+    'Enter details about how to install your program.',
+    'Enter details about how to use your program.',
+    'Input every author.',
+    'Enter a the license you are using for your project.',
+    'If you want to allow contributors to your project explain how otherwise type N/A.',
+    'Enter your GitHub username.',
+    'Enter your email as a point of contact.',
+
+];
 
 const promptUser = () => {
     return inquirer.prompt([
       {
         type: 'input',
         name: 'title',
-        message: 'What is the title to your project?',
+        message: questions[0],
       },
       {
         type: 'input',
         name: 'description',
-        message: 'Enter a small description of what your project is about.',
+        message: questions[1],
       },
       {
         type: 'checkbox',
         name: 'dependencies',
-        message: 'Check every compatible system.',
+        message: questions[2],
         choices: ['macOS', 'Windows 10', 'Linux'],
       },
       {
         type: 'input',
         name: 'installation',
-        message: 'Enter details about how to install your program.',
+        message: questions[3],
       },
       {
         type: 'input',
         name: 'usage',
-        message: 'Enter details about how to use your program.',
+        message: questions[4],
       },
       {
         type: 'input',
         name: 'credits',
-        message: 'Input every author.',
+        message: questions[5],
       },
       {
         type: 'list',
         name: 'license',
-        message: 'Enter a the license you are using for your project.',
+        message: questions[6],
         choices: [
             'Apache v2.0', 
             'GNU v3.0', 
             'MIT', 
-            'BSD 2-Clause', 
-            'BSD 3-Clause', 
+            'BSD 2 Clause', 
+            'BSD 3 Clause', 
             'Boost Software v1.0', 
             'Creative Commons Zero v1.0', 
             'Eclipse Public v2.0',
@@ -60,24 +74,23 @@ const promptUser = () => {
       {
         type: 'input',
         name: 'contribution',
-        message: 'If you want to allow contributors to your project explain how otherwise type N/A.',
+        message: questions[7],
       },
       {
         type: 'input',
         name: 'github',
-        message: 'Enter your GitHub username.',
+        message: questions[8],
       },
       {
         type: 'input',
         name: 'email',
-        message: 'Enter your email as a point of contact.',
+        message: questions[9],
       },
     ]);
   };
 
   const generateMarkdown = ({title, description, dependencies, installation, usage, credits, license, contribution, github, email}) =>
-  `
-  # ${title}
+  `# ${title}
       
   ## Description
     
@@ -113,7 +126,7 @@ const promptUser = () => {
     
   This project is licensed under the MIT License - see the LICENSE file for details 
     
-  ![badge](https://img.shields.io/badge/License-${license}-blue)
+  ![badge]()
     
   ## Contribution
     
@@ -125,10 +138,18 @@ const promptUser = () => {
   - [${email}]()
   `;
 
-// TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+// const renderLicenseBadge = ({license}) =>
 
-// TODO: Create a function to initialize app
+
+//  {const badge = `https://img.shields.io/badge/License-${license}-blue`;
+// }
+//   newBadge = badge.split(' ').join('%20');
+//   console.log(newBadge);
+//   return newBadge;
+
+
+
+
 function init() {
     promptUser()
       .then((answers) => writeFile('TEST.md', generateMarkdown(answers)))
