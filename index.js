@@ -75,14 +75,67 @@ const promptUser = () => {
     ]);
   };
 
+  const generateMarkdown = ({title, description, dependencies, installation, usage, credits, license, contribution, github, email}) =>
+  `
+  # ${title}
+      
+  ## Description
+    
+  ${description}
+    
+  ## Table of Contents
+    
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [Dependencies](#dependencies)
+  - [Credits](#credits)
+  - [License](#license)
+  - [Contribution](#contribution)
+  - [Questions](#questions)
+    
+  ## Dependencies
+    
+  ${dependencies}
+    
+  ## Installation
+    
+  ${installation}
+    
+  ## Usage
+    
+  ${usage}
+    
+  ## Credits
+    
+  ${credits}
+    
+  ## License
+    
+  This project is licensed under the MIT License - see the LICENSE file for details 
+    
+  ![badge](https://img.shields.io/badge/License-${license}-blue)
+    
+  ## Contribution
+    
+  ${contribution}
+    
+  ## Questions
+  Contact me for any questions with the following:
+  - [Github](https://github.com/${github})
+  - [${email}]()
+  `;
+
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {}
 
 // TODO: Create a function to initialize app
 function init() {
     promptUser()
+      .then((answers) => writeFile('TEST.md', generateMarkdown(answers)))
+      .then(() => console.log('Successfully created a README file'))
+      .catch((err) => console.log(err));
     
-}
+};
 
 // Function call to initialize app
 init();
