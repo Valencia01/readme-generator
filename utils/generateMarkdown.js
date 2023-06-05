@@ -1,4 +1,4 @@
-
+//generates a badge by using the same link and replacing any spaces with %20 if necessary
 function renderLicenseBadge(license) {
 
   var badge = `https://img.shields.io/badge/License-${license}-blue`;
@@ -8,7 +8,7 @@ function renderLicenseBadge(license) {
   return newBadge;
 }
 
-// TODO: Create a function to generate markdown for README
+//a function to generate markdown for README
 function generateMarkdown(data) {
   let finalBadge = renderLicenseBadge(data.license);
   return `# ${data.title}
