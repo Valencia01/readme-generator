@@ -4,7 +4,7 @@ const fs = require('fs');
 
 const generate = require('./utils/generateMarkdown');
 
-// TODO: Create an array of questions for user input
+
 const questions = [
     'What is the title to your project?', 
     'Enter a small description of what your project is about.',
@@ -69,6 +69,7 @@ const promptUser = () => {
             'GNU v2.0',
             'GNU v2.1',
             'Mozilla v2.0',
+            'No License'
         ],
       },
       {
@@ -89,15 +90,6 @@ const promptUser = () => {
     ]);
   };
 
-  
-// const renderLicenseBadge = ({license}) =>
-
-
-//  {const badge = `https://img.shields.io/badge/License-${license}-blue`;
-// }
-//   newBadge = badge.split(' ').join('%20');
-//   console.log(newBadge);
-//   return newBadge;
 function writeToFile(readmeFile, data) {
     
   readmeFile = generate.generateMarkdown(data);
