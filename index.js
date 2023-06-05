@@ -1,6 +1,6 @@
 const inquirer = require('inquirer');
 
-const { writeFile } = require('fs').promises;
+const fs = require('fs');
 
 const generate = require('./utils/generateMarkdown');
 
@@ -89,55 +89,7 @@ const promptUser = () => {
     ]);
   };
 
-  const generateMarkdown = ({title, description, dependencies, installation, usage, credits, license, contribution, github, email}) =>
-  `# ${title}
-      
-  ## Description
-    
-  ${description}
-    
-  ## Table of Contents
-    
-  - [Installation](#installation)
-  - [Usage](#usage)
-  - [Dependencies](#dependencies)
-  - [Credits](#credits)
-  - [License](#license)
-  - [Contribution](#contribution)
-  - [Questions](#questions)
-    
-  ## Dependencies
-    
-  ${dependencies}
-    
-  ## Installation
-    
-  ${installation}
-    
-  ## Usage
-    
-  ${usage}
-    
-  ## Credits
-    
-  ${credits}
-    
-  ## License
-    
-  This project is licensed under the MIT License - see the LICENSE file for details 
-    
-  ![badge]()
-    
-  ## Contribution
-    
-  ${contribution}
-    
-  ## Questions
-  Contact me for any questions with the following:
-  - [Github](https://github.com/${github})
-  - [${email}]()
-  `;
-
+  
 // const renderLicenseBadge = ({license}) =>
 
 
@@ -146,16 +98,24 @@ const promptUser = () => {
 //   newBadge = badge.split(' ').join('%20');
 //   console.log(newBadge);
 //   return newBadge;
+function writeToFile(readmeFile, data) {
+    
+  readmeFile = generate.generateMarkdown(data);
 
-
+  return readmeFile;
+}
 
 
 function init() {
     promptUser()
-      .then((answers) => writeFile('TEST.md', generateMarkdown(answers)))
-      .then(() => console.log('Successfully created a README file'))
-      .catch((err) => console.log(err));
-    
+      .then(answers => {
+      let readmeFile = "";
+      readmeFile = writeToFile(readmeFile, answers);
+      fs.writeFile(`TEST.md`, readmeFile, err => 
+      err? console.log(error):
+      console.log('Your README file was generated'));
+      })
+      
 };
 
 // Function call to initialize app
